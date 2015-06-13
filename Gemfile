@@ -7,4 +7,5 @@ gem 'aws-sdk', '~> 2'
 gem 'active_model_serializers'
 gem 'pg'
 gem 'nbayes'
+gem 'engtagger'
 
