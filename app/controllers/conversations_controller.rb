@@ -1,7 +1,9 @@
 class ConversationsController < ApplicationController
+  before_action :set_user, only: [:create]
+
   def create
     @conversation = Conversation.new(conversation_params)
-    if @conversation.save
+    if @conversation.update(user_id: @user.id)
       render json: @conversation, status: 201
     else
       render json: { errors: @conversation.errors }, status: 422
@@ -15,7 +17,11 @@ class ConversationsController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find_by(aim_id: params[:conversation][:aim_id])
+  end
+
   def conversation_params
-    params.require(:conversation).permit(:user_id)
+    params.require(:conversation).permit(:user_id, :aim_id)
   end
 end
