@@ -8,4 +8,5 @@ gem 'active_model_serializers'
 gem 'pg'
 gem 'nbayes'
 gem 'engtagger'
+gem 'rack-cors', :require => 'rack/cors'
 
