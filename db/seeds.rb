@@ -5,8 +5,11 @@ end
 User.create(aim_id: 'angelhack')
 User.create(aim_id: 'hackangel')
 
+# conversations
+User.first.conversations.create
+
 # sad user
-User.first.messages.create(content: 'I am sad')
+User.first.messages.create(conversation_id: Conversation.first.id, content: 'I am sad')
 
 # happy user
-User.last.messages.create(content: 'I am happy')
+User.last.messages.create(conversation_id: Conversation.first.id, content: 'I am happy')
