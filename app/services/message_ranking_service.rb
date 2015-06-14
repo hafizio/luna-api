@@ -3,7 +3,7 @@ class MessageRankingService
     @user = user_id
     @text = text
     @message = {}
-    @message[:text] = text
+    @message[:content] = text
   end
 
   def call

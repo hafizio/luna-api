@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :set_user, only: [:create]
+  before_action :set_conversation, only: [:show]
 
   def create
     @conversation = Conversation.new(conversation_params)
@@ -12,10 +13,18 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = Conversation.all
-    render json: @conversations, serializer: ConversationsController
+    render json: @conversations
+  end
+
+  def show
+    render json: @conversation, include: ['messages']
   end
 
   private
+
+  def set_conversation
+    @conversation = Conversation.find(params[:id])
+  end
 
   def set_user
     @user = User.find_by(aim_id: params[:conversation][:aim_id])
